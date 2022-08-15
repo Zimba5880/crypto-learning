@@ -36,8 +36,7 @@ const gcd = function(a:number,b:number):number{
         return high;
     }
     else{
-        const remain = high%low;
-        return gcd(low,remain);
+        return gcd(low,high%low);
     }
     
 }
@@ -86,4 +85,25 @@ const exGcd = function(a:number,b:number):exGcdVariable{
 
 }
 
-export {gcd,exGcd,num2Buffer}
+/**
+ * 计算a**b(mod c)
+ * @param  a 底数
+ * @param  b 指数
+ * @param  c 模
+ * @returns 结果
+ */
+ function fastPowerMod(a:number, b:number, c:number){
+    let res = 1;
+    a %= c
+
+    while (b) {
+        if(b&1){
+            res = (res*a)%c
+        }
+        a = a*a%c
+        b>>=1;
+    }
+    return res
+}
+
+export {gcd,exGcd,num2Buffer,fastPowerMod}
