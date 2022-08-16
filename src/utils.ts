@@ -1,4 +1,4 @@
-import { Buffer } from "buffer";
+
 
 class exGcdVariable {
 
@@ -92,7 +92,7 @@ const exGcd = function(a:number,b:number):exGcdVariable{
  * @param  c 模
  * @returns 结果
  */
- function fastPowerMod(a:number, b:number, c:number){
+ const fastPowerMod = function (a:number, b:number, c:number):number{
     let res = 1;
     a %= c
 
@@ -106,4 +106,32 @@ const exGcd = function(a:number,b:number):exGcdVariable{
     return res
 }
 
-export {gcd,exGcd,num2Buffer,fastPowerMod}
+
+/**
+ * 埃拉托斯特尼筛法求质数
+ * @param size 求size以内的所有质数
+ * @returns 
+ */
+const findPrimitive = function(size:number):number[]{
+    const arr = new Array<boolean>(size).fill(true);
+    for(let i=2;i<Math.ceil(Math.sqrt(size));i++){
+        if(!arr[i]){
+            continue;
+        }
+        for(let j=i*2;j<size;j+=i){
+            arr[j]=false;
+        }
+    }
+
+    const res:number[] = [];
+    arr.forEach((val,index)=>{
+        if(val){
+            res.push(index);
+        }
+    })
+
+    return res;
+}
+
+
+export {gcd,exGcd,num2Buffer,fastPowerMod,findPrimitive}

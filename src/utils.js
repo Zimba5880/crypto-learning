@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.num2Buffer = exports.exGcd = exports.gcd = void 0;
+exports.findPrimitive = exports.fastPowerMod = exports.num2Buffer = exports.exGcd = exports.gcd = void 0;
 class exGcdVariable {
     constructor(a, b) {
         this.a = a;
@@ -28,8 +28,7 @@ const gcd = function (a, b) {
         return high;
     }
     else {
-        const remain = high % low;
-        return gcd(low, remain);
+        return gcd(low, high % low);
     }
 };
 exports.gcd = gcd;
@@ -74,3 +73,42 @@ const exGcd = function (a, b) {
     }
 };
 exports.exGcd = exGcd;
+/**
+ * 计算a**b(mod c)
+ * @param  a 底数
+ * @param  b 指数
+ * @param  c 模
+ * @returns 结果
+ */
+const fastPowerMod = function (a, b, c) {
+    let res = 1;
+    a %= c;
+    while (b) {
+        if (b & 1) {
+            res = (res * a) % c;
+        }
+        a = a * a % c;
+        b >>= 1;
+    }
+    return res;
+};
+exports.fastPowerMod = fastPowerMod;
+const findPrimitive = function (size) {
+    const arr = new Array(size).fill(true);
+    for (let i = 2; i < Math.ceil(Math.sqrt(size)); i++) {
+        if (!arr[i]) {
+            continue;
+        }
+        for (let j = i * 2; j < size; j += i) {
+            arr[j] = false;
+        }
+    }
+    const res = [];
+    arr.forEach((val, index) => {
+        if (val) {
+            res.push(index);
+        }
+    });
+    return res;
+};
+exports.findPrimitive = findPrimitive;
