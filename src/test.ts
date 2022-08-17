@@ -1,11 +1,10 @@
-import {gcd,exGcd,findPrimitive} from './utils'
+import {gcd,exGcd,findPrimitive,num2Buffer,buffer2Num,fastPowerMod} from './utils'
 
+const p = 16021597;
+const q = 21065563;
+const e = 36516283;
+const d = 24674960;
 
-// const _gcd = gcd(562668,896400);
-// const res = exGcd(562668,896400);
-// console.log(`GCD is ${_gcd}`);
-// console.log(res);
-// console.log(`verify ${res.calcGcd()}`);
+const phy = (p-1)*(q-1);
+console.log(exGcd(e,phy));
 
-const primitves = findPrimitive(10000000);
-console.log(primitves);

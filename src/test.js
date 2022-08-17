@@ -1,10 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const utils_1 = require("./utils");
-// const _gcd = gcd(562668,896400);
-// const res = exGcd(562668,896400);
-// console.log(`GCD is ${_gcd}`);
-// console.log(res);
-// console.log(`verify ${res.calcGcd()}`);
-const primitves = (0, utils_1.findPrimitive)(10000000);
-console.log(primitves);
+const p = 16021597;
+const q = 21065563;
+const e = 36516283;
+const d = 24674960;
+const phy = (p - 1) * (q - 1);
+console.log((0, utils_1.exGcd)(e, phy));

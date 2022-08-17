@@ -66,8 +66,8 @@ const num2Buffer = function(num:number):number[]{
  */
 const exGcd = function(a:number,b:number):exGcdVariable{
 
-    const higher = a>b?a:b;
-    const lower = a<=b?a:b;
+    const higher = a>b?a:b
+    const lower = a<=b?a:b
 
     if(lower == 0){
         const res = new exGcdVariable(higher,lower);
@@ -96,13 +96,24 @@ const exGcd = function(a:number,b:number):exGcdVariable{
     let res = 1;
     a %= c
 
-    while (b) {
-        if(b&1){
+    const b_arr = num2Binary(b);
+
+    b_arr.reverse();
+
+    b_arr.forEach((val)=>{
+        if(val==1){
             res = (res*a)%c
         }
         a = a*a%c
-        b>>=1;
-    }
+    })
+
+    // while (b) {
+    //     if(b&1){
+    //         res = (res*a)%c
+    //     }
+    //     a = a*a%c
+    //     b>>>=1;
+    // }
     return res
 }
 
@@ -133,5 +144,31 @@ const findPrimitive = function(size:number):number[]{
     return res;
 }
 
+//生成从minNum到maxNum的随机数
+function randomNum(minNum:number,maxNum:number){ 
+    return Math.random()*(maxNum-minNum+1)+minNum;
+} 
 
-export {gcd,exGcd,num2Buffer,fastPowerMod,findPrimitive}
+const buffer2Num = function(buf:number[]):number{
+    let res = 0;
+    let buf_r = buf.concat([]);
+    buf_r.reverse();
+    for(let i=0;i<buf_r.length;i++){
+        res = res+buf_r[i]*Math.pow(256,i);
+    }
+    return res;
+}
+
+const num2Binary = function(num:number):number[]{
+    if(num < 2){
+        return [num]
+    }
+    else{
+        const remain = num%2;
+        const arr = num2Binary(Math.trunc(num/2));
+        arr.push(remain);
+        return arr;
+    }
+}
+
+export {gcd,exGcd,num2Buffer,fastPowerMod,findPrimitive,randomNum,buffer2Num}

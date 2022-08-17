@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.findPrimitive = exports.fastPowerMod = exports.num2Buffer = exports.exGcd = exports.gcd = void 0;
+exports.buffer2Num = exports.randomNum = exports.findPrimitive = exports.fastPowerMod = exports.num2Buffer = exports.exGcd = exports.gcd = void 0;
 class exGcdVariable {
     constructor(a, b) {
         this.a = a;
@@ -83,16 +83,29 @@ exports.exGcd = exGcd;
 const fastPowerMod = function (a, b, c) {
     let res = 1;
     a %= c;
-    while (b) {
-        if (b & 1) {
+    const b_arr = num2Binary(b);
+    b_arr.reverse();
+    b_arr.forEach((val) => {
+        if (val == 1) {
             res = (res * a) % c;
         }
         a = a * a % c;
-        b >>= 1;
-    }
+    });
+    // while (b) {
+    //     if(b&1){
+    //         res = (res*a)%c
+    //     }
+    //     a = a*a%c
+    //     b>>>=1;
+    // }
     return res;
 };
 exports.fastPowerMod = fastPowerMod;
+/**
+ * 埃拉托斯特尼筛法求质数
+ * @param size 求size以内的所有质数
+ * @returns
+ */
 const findPrimitive = function (size) {
     const arr = new Array(size).fill(true);
     for (let i = 2; i < Math.ceil(Math.sqrt(size)); i++) {
@@ -112,3 +125,29 @@ const findPrimitive = function (size) {
     return res;
 };
 exports.findPrimitive = findPrimitive;
+//生成从minNum到maxNum的随机数
+function randomNum(minNum, maxNum) {
+    return Math.random() * (maxNum - minNum + 1) + minNum;
+}
+exports.randomNum = randomNum;
+const buffer2Num = function (buf) {
+    let res = 0;
+    let buf_r = buf.concat([]);
+    buf_r.reverse();
+    for (let i = 0; i < buf_r.length; i++) {
+        res = res + buf_r[i] * Math.pow(256, i);
+    }
+    return res;
+};
+exports.buffer2Num = buffer2Num;
+const num2Binary = function (num) {
+    if (num < 2) {
+        return [num];
+    }
+    else {
+        const remain = num % 2;
+        const arr = num2Binary(Math.trunc(num / 2));
+        arr.push(remain);
+        return arr;
+    }
+};

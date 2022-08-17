@@ -1,0 +1,28 @@
+import {buffer2Num, fastPowerMod, num2Buffer} from './utils'
+import { Buffer } from 'buffer';
+
+const n = 337503960964111;
+const d = 109444134179659;
+
+const cipher = "AAVlC7Iz7ACWmhyOgf4Ag6JtGfaL";
+
+const nlen = num2Buffer(n).length;
+
+const ciper_buffer = Buffer.from(cipher,'base64');
+
+let res:number[] = [];
+
+for(let i=0;i<ciper_buffer.length;i=i+nlen){
+    const chunk_buf:number[] = [];
+    for(let j=0;j<nlen;j++){
+        if(i+j<ciper_buffer.length){
+            chunk_buf.push(ciper_buffer[i+j]);
+        }
+    }
+    const chunk_num = buffer2Num(chunk_buf);
+    const decrypt_num = fastPowerMod(chunk_num,d,n);
+    const decrypt_buffer = num2Buffer(decrypt_num);
+    res = res.concat(decrypt_buffer);
+}
+
+console.log(Buffer.from(res).toString('utf-8'));
