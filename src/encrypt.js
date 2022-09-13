@@ -2,8 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const utils_1 = require("./utils");
 const buffer_1 = require("buffer");
-const n = 337503960964111;
-const e = 36516283;
+const n = 16330337;
+const e = 7949;
 const p = "This is plain text";
 const nlen = (0, utils_1.num2Buffer)(n).length;
 const p_buffer = buffer_1.Buffer.from(p);

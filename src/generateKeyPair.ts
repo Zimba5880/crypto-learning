@@ -2,10 +2,10 @@ import exp from 'constants';
 import  {gcd,exGcd,num2Buffer,fastPowerMod,findPrimitive,randomNum} from './utils'
 
 const generateKeypair = function(){
-    const primitves = findPrimitive(50000000);
+    const primitves = findPrimitive(10000);
     const validprimitves:number[] = [];
     primitves.forEach((val)=>{
-        if(val>=10000000){
+        if(val>=1000){
             validprimitves.push(val);
         }
     })

@@ -2,9 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const utils_1 = require("./utils");
 const buffer_1 = require("buffer");
-const n = 337503960964111;
-const d = 109444134179659;
-const cipher = "AAVlC7Iz7ACWmhyOgf4Ag6JtGfaL";
+const n = 16330337;
+const d = 823349;
+const cipher = "FRODoTxR6WA3M9lKqQLlAFNxPKNJidQsnxDU";
 const nlen = (0, utils_1.num2Buffer)(n).length;
 const ciper_buffer = buffer_1.Buffer.from(cipher, 'base64');
 let res = [];

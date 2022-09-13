@@ -1,9 +1,9 @@
 import {buffer2Num, fastPowerMod, num2Buffer} from './utils'
 import { Buffer } from 'buffer';
 
-const n = 337503960964111;
+const n = 16330337;
 
-const e = 36516283;
+const e = 7949;
 
 const p = "This is plain text";
 

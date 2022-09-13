@@ -3,10 +3,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.generateKeypair = void 0;
 const utils_1 = require("./utils");
 const generateKeypair = function () {
-    const primitves = (0, utils_1.findPrimitive)(50000000);
+    const primitves = (0, utils_1.findPrimitive)(10000);
     const validprimitves = [];
     primitves.forEach((val) => {
-        if (val >= 10000000) {
+        if (val >= 1000) {
             validprimitves.push(val);
         }
     });

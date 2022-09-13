@@ -1,10 +1,10 @@
 import {buffer2Num, fastPowerMod, num2Buffer} from './utils'
 import { Buffer } from 'buffer';
 
-const n = 337503960964111;
-const d = 109444134179659;
+const n = 16330337;
+const d = 823349;
 
-const cipher = "AAVlC7Iz7ACWmhyOgf4Ag6JtGfaL";
+const cipher = "FRODoTxR6WA3M9lKqQLlAFNxPKNJidQsnxDU";
 
 const nlen = num2Buffer(n).length;
 
